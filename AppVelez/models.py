@@ -41,5 +41,6 @@ class Empleados(models.Model):
     pais=models.CharField(max_length=50)
     cargo=models.CharField(max_length=50)
     sueldo=models.IntegerField()
+    legajo=models.IntegerField()
 
     
