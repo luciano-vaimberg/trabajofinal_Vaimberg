@@ -1,10 +1,10 @@
 from django.urls import path
-from .views import inicio, sociossemiplenos, sociosplenos, empleados
+from .views import inicio, sociosemipleno, sociopleno, empleado
 
 urlpatterns = [
     path('', inicio, name="inicio"),
-    path('sociossemiplenos/', sociossemiplenos ,name="sociossemiplenos"),
-    path('sociosplenos/', sociosplenos ,name="sociosplenos"),
-    path('empleados/', empleados ,name="empleados"),
+    path('sociosemipleno/', sociosemipleno ,name="sociosemipleno"),
+    path('sociopleno/', sociopleno ,name="sociopleno"),
+    path('empleado/', empleado ,name="empleado"),
 
 ]
