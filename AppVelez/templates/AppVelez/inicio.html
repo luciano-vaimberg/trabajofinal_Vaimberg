@@ -4,19 +4,30 @@
 
 
 
+{% block titulo %} 
+INICIO - VELEZ
+{% endblock %}
+
+
+
 {% block titulo_pagina %}
+
 <p class="text-white-50 mb-0">Club Atletico Velez Sarsfield</p>
 {% endblock %}
 
 
 
 {% block subtitulo_uno_pagina %}
-<h2>Diferencias entre socios semiplenos y plenos</h2>
+ 
+<h2>Socios Semiplenos , plenos y empleados</h2>
+
 {% endblock %}
 
 
 
 {% block texto_del_subtitulo_uno %}
-<p>- Los socios semiplenos tiene el abono mas economico de la institución, siendo quienes unicamente tienen acceso al estadio los dias de partido. Ser semipleno tiene su beneficio debido a que la entrada en los partidos del campeonato local son gratuitas, y en caso de jugarse copa internacional se obtiene grandes descuentos en la entrada</p>
-<p>- Los socios plenos tienen un abono mas elevado, en comparación con los otros, pero ademas de tener los beneficios de los semis, cuentan con acceso gratuito a las instalaciones del club, como las parillas, gimnasio, deportes y pileta. Abarcando las instalaciones que se encuentran en nuestro polideportivo como asi en la villa olímpica</p>
+{{ mensaje_sociopleno }}
+{{ mensaje_sociosemipleno }}
+{{ mensaje_empleado }} 
+
 {% endblock %}

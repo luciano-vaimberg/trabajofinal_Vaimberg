@@ -1,0 +1,37 @@
+{% extends "AppVelez/padre.html" %}
+
+{% load static %}
+
+
+
+{% block titulo %} 
+EMPLEADOS - VELEZ
+{% endblock %}
+
+
+
+{% block titulo_pagina %}
+<p class="text-white-50 mb-0">Empleados del Club Atletico Velez Sarsfield</p>
+{% endblock %}
+
+
+
+{% block subtitulo_uno_pagina %}
+<h2>Crea un nuevo empleado</h2>
+
+<form action="{% url 'empleadoform' %}" method="POST">{% csrf_token %}
+    <table>
+        {{ formularioemp.as_table }}
+    </table>
+
+    <input type="submit" , value="ENVIAR">
+</form>
+{% endblock %}
+
+
+
+{% block texto_del_subtitulo_uno %}
+Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel, natus corporis nostrum iure molestias doloribus modi ea officia sint distinctio ducimus vero, veniam eaque quod in, perspiciatis dolore quae. Deleniti.
+
+
+{% endblock %}

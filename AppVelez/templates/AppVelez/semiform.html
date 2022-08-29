@@ -1,0 +1,37 @@
+{% extends "AppVelez/padre.html" %}
+
+{% load static %}
+
+
+
+{% block titulo %} 
+SOCIOS PLENOS - VELEZ
+{% endblock %}
+
+
+
+{% block titulo_pagina %}
+<p class="text-white-50 mb-0">Socios plenos del Club Atletico Velez Sarsfield</p>
+{% endblock %}
+
+
+
+{% block subtitulo_uno_pagina %}
+<h2>Crea un nuevo socio semipleno</h2>
+
+<form action="{% url 'semiplenoform' %}" method="POST">{% csrf_token %}
+    <table>
+        {{ formulariosemipleno.as_table }}
+    </table>
+
+    <input type="submit" , value="ENVIAR">
+</form>
+{% endblock %}
+
+
+
+{% block texto_del_subtitulo_uno %}
+Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque distinctio inventore atque quis itaque totam dolore fugit ea minus nesciunt, cumque explicabo veniam nobis, dolorum magni perferendis iste cupiditate est.
+
+
+{% endblock %}
