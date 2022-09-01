@@ -61,7 +61,7 @@
   --bs-body-font-weight: 400;
   --bs-body-line-height: 1.5;
   --bs-body-color: #212529;
-  --bs-body-bg: #fff;
+  --bs-body-bg: #0343be;
 }
 
 *,
@@ -2487,8 +2487,7 @@ textarea.form-control-lg {
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
-  -webkit-print-color-adjust: exact;
-          color-adjust: exact;
+         
 }
 .form-check-input[type=checkbox] {
   border-radius: 0.25em;
@@ -11292,3 +11291,6 @@ textarea.form-control-lg {
   background-position: center;
   background-size: cover;
 }
+
+
+

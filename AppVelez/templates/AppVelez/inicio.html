@@ -18,16 +18,45 @@ INICIO - VELEZ
 
 
 {% block subtitulo_uno_pagina %}
- 
-<h2>Socios Semiplenos , plenos y empleados</h2>
+ <div id="crearnuevosocioyempleado">
+    <p>Administracion de nuevos socios y empleados</p>
+</div>
+<br>
+<div id="botones-crear"><br>
 
+    <a class="boton" href="{% url 'semiplenoform' %}">Crear nuevo socio semipleno</a>
+    <a class="boton" href="{% url 'plenoform' %}">Crear nuevo socio pleno</a>
+    <a class="boton" href="{% url 'empleadoform' %}">Crear nuevo empleado</a>
+    <!--<a class="boton-semi" href="{% url 'semiplenoform' %}"><input type="button" target="_blank" value="Crear nuevos socios semiplenos"></a>
+    <a href="{% url 'plenoform' %}"><input type="button" target="_blank" value="Crear nuevos socios plenos"></a>
+    <a href="{% url 'empleadoform' %}"><input type="button" target="_blank" value="Crear nuevos empleados"></a>-->
+
+</div>
+<br><br>
+     <div id="busquedasociosyempleados">
+         <p id="busqueda-id">Busqueda de socios y empleados</h2>
+    </div>
+    <br><br>
+<div id="botones-buscar">
+<a class="boton" href="{% url 'busquedasociosemipleno' %}">Buscar socio semipleno</a>
+<a class="boton" href="{% url 'busquedasociopleno' %}">Buscar socio pleno</a>
+<a class="boton" href="{% url 'busquedaempleado' %}">Buscar empleado</a>
+
+</div>
 {% endblock %}
 
 
 
 {% block texto_del_subtitulo_uno %}
-{{ mensaje_sociopleno }}
-{{ mensaje_sociosemipleno }}
-{{ mensaje_empleado }} 
+<h3>{{ mensaje_sociopleno }}</h3>
+<h3>{{ mensaje_sociosemipleno }}</h3>
+<h3>{{ mensaje_empleado }} </h3>
+
+{% endblock %}
+
+
+
+{% block busqueda_formulario %} 
+
 
 {% endblock %}

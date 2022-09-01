@@ -5,23 +5,30 @@
 
 
 {% block titulo %} 
-SOCIOS PLENOS - VELEZ
+SOCIOS PLENOS - VELEZ SARSFIELD
 {% endblock %}
 
 
 
 {% block titulo_pagina %}
-<p class="text-white-50 mb-0">Socios Plenos del Club Atletico Velez Sarsfield</p>
+<p class="text-white-50 mb-0">Administracion de socios plenos del Club Atletico Velez Sarsfield</p>
 {% endblock %}
 
 
 
 {% block subtitulo_uno_pagina %}
-<h2>Nuestra masa societaria plena</h2>
+<p id="titulo-plenos">Administrar socios plenos</p>
 {% endblock %}
 
 
 
 {% block texto_del_subtitulo_uno %}
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab facilis rem provident fugiat quam laboriosam, reiciendis iure sint, harum voluptate sed optio tenetur! Vero, eligendi laudantium optio iure amet saepe!
+   
+<a class="boton" href="{% url 'plenoform' %}">Crear nuevo socio pleno</a>
+
+
+<a class="boton" href="{% url 'busquedasociopleno' %}">Buscar socio pleno</a>
+
+   
+
 {% endblock %}

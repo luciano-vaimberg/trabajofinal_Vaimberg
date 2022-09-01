@@ -1,0 +1,49 @@
+{% extends "AppVelez/padre.html" %}
+
+{% load static %}
+
+
+
+{% block titulo %} 
+RESULTADO BUSQUEDA SOCIOS SEMIPLENOS- VELEZ SARSFIELD
+{% endblock %}
+
+
+
+{% block titulo_pagina %}
+<p class="text-white-50 mb-0">Resultado busqueda de socios semiplenos en el sistema</p>
+{% endblock %}
+
+
+
+{% block subtitulo_uno_pagina %}
+
+{% if mensaje_semipleno_ %}
+<h2>{{ mensaje_semipleno_ }}</h2>
+{% else %} 
+
+<h2>Resultados de la busqueda:</h2>
+
+{% for semipleno in busqueda_socio_semi %}
+
+----------------------Socio Semi Pleno--------------------
+
+<h4>-Nombre: {{ semipleno.nombre }}</h4>
+<h4>-Apellido: {{ semipleno.apellido }}</h4>
+<h4>-Genero: {{ semipleno.genero }}</h4>
+<h4>-Edad: {{ semipleno.edad }}</h4>
+<h4>-Documento: {{ semipleno.documento }}</h4>
+<h4>-Email: {{ semipleno.email }}</h4>
+<h4>-Direccion: {{ semipleno.direccion }}</h4>
+<h4>-Localidad: {{ semipleno.localidad }}</h4>
+<h4>-Provincia: {{ semipleno.pais }}</h4>
+<h4>-Pais: {{ semipleno.pais }}</h4>
+<h4>-Numero de socio: {{ semipleno.numero_socio }}</h4>
+
+--------------------------------------------------------
+
+{% endfor %}
+{% endif %}
+{% endblock %}
+
+

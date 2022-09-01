@@ -99,5 +99,56 @@ def empleadosform(request):
         formulario_empleado=empleadoform()
         return render(request, "AppVelez/empleadoform.html", {"formularioemp":formulario_empleado})
 
+#Busqueda por form socio pleno 
+
+def busquedaSocioPleno(request):
+    return render (request, "AppVelez/busquedasociopleno.html")
+
+def buscarSocioPleno(request):
+    if request.GET["numero_socio"]:
+        numerodesocio=request.GET["numero_socio"]
+        busqueda_socio_pleno=SociosPlenos.objects.filter(numero_socio=numerodesocio)
+        
+        if len(busqueda_socio_pleno)!=0:
+            return render(request, "AppVelez/resultadospleno.html", {"busqueda_socio_pleno":busqueda_socio_pleno})
+        else:  
+            return render(request, "AppVelez/resultadospleno.html", {"mensaje_pleno_":"No existe ese socio"})   
+    else:   
+        return render(request, "AppVelez/busquedasociopleno.html", {"mensaje_pleno_":"No ingreso datos"})         
+         
 
 
+#Busqueda por form socio semipleno 
+
+def busquedaSocioSemiPleno(request):
+    return render (request, "AppVelez/busquedasociosemipleno.html")
+
+def buscarSocioSemiPleno(request):
+    if request.GET["numero_socio"]:
+        numerodesocio=request.GET["numero_socio"]
+        busqueda_socio_semi_pleno=SociosSemiPlenos.objects.filter(numero_socio=numerodesocio)
+        
+        if len(busqueda_socio_semi_pleno)!=0:
+            return render(request, "AppVelez/resultadossemipleno.html", {"busqueda_socio_semi":busqueda_socio_semi_pleno})
+        else:
+            return render(request, "AppVelez/resultadossemipleno.html", {"mensaje_semipleno_":"No existe ese socio"})  
+    else:
+         return render(request, "AppVelez/busquedasociosemipleno.html", {"mensaje_semipleno_":"No ingreso datos"})   
+
+#Busqueda por form empleados
+
+def busquedaEmpleados(request):
+    return render (request, "AppVelez/busquedaempleado.html")
+
+def buscarEmpleados(request):
+    if request.GET["legajo"]:
+        legajo1=request.GET["legajo"]
+        busqueda_empleado=Empleados.objects.filter(legajo=legajo1)
+    
+    
+        if len(busqueda_empleado)!=0:
+            return render(request, "AppVelez/resultadosempleado.html", {"busqueda_empleados":busqueda_empleado})
+        else:
+            return render(request, "AppVelez/resultadosempleado.html", {"mensaje_empleado":"No existe ese legajo"})
+    else:
+        return render(request, "AppVelez/busquedaempleado.html", {"mensaje_empleado_":"No ingreso datos"})

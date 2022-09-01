@@ -1,0 +1,35 @@
+{% extends "AppVelez/padre.html" %}
+
+{% load static %}
+
+
+
+{% block titulo %} 
+BUSQUEDA SOCIOS PLENOS - VELEZ SARSFIELD
+{% endblock %}
+
+
+
+{% block titulo_pagina %}
+<p class="text-white-50 mb-0">Busqueda de socios plenos en el sistema</p>
+{% endblock %}
+
+
+
+{% block subtitulo_uno_pagina %}
+<h2>Buscar por numero de socio:</h2>
+
+<form action="{% url 'buscarsociopleno' %}" method="GET"> {% csrf_token %}
+
+    <p>Numero de socio:<input type="number" name="numero_socio", id="numero_socio"></p>
+
+     <input type="submit", value="Buscar">
+
+
+</form>
+<br>
+<h4>{{ mensaje_pleno_ }}</h4>
+
+{% endblock %}
+
+

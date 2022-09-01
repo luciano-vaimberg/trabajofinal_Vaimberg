@@ -1,0 +1,35 @@
+{% extends "AppVelez/padre.html" %}
+
+{% load static %}
+
+
+
+{% block titulo %} 
+BUSQUEDA EMPLEADOS - VELEZ SARSFIELD
+{% endblock %}
+
+
+
+{% block titulo_pagina %}
+<p class="text-white-50 mb-0">Busqueda de empleados en el sistema</p>
+{% endblock %}
+
+
+
+{% block subtitulo_uno_pagina %}
+<h2>Buscar por numero de legajo:</h2>
+
+<form action="{% url 'buscarempleados' %}" method="GET"> {% csrf_token %}
+
+    <p>Numero de legajo:<input type="number" name="legajo", id="legajo"></p>
+
+    <input type="submit", value="Buscar">
+
+
+</form>
+<br>
+<h4>{{ mensaje_empleado_ }}</h4>
+
+{% endblock %}
+
+

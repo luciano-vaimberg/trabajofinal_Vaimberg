@@ -11,13 +11,13 @@ EMPLEADOS - VELEZ
 
 
 {% block titulo_pagina %}
-<p class="text-white-50 mb-0">Empleados del Club Atletico Velez Sarsfield</p>
+<p class="text-white-50 mb-0">Administración de empleados del Club Atletico Velez Sarsfield</p>
 {% endblock %}
 
 
 
 {% block subtitulo_uno_pagina %}
-<h2>Empleados de calidad</h2>
+<p id="titulo_empleado">Administrar empleados</p>
 
 {% endblock %}
 
@@ -26,5 +26,7 @@ EMPLEADOS - VELEZ
 {% block texto_del_subtitulo_uno %}
 
 
+<a class="boton" href="{% url 'empleadoform' %}">Crear nuevo empleado</a>
+<a class="boton" href="{% url 'busquedaempleado' %}">Buscar empleado</a>
 
 {% endblock %}

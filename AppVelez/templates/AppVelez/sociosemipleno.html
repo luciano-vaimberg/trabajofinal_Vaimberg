@@ -5,26 +5,29 @@
 
 
 {% block titulo %} 
-SOCIOS SEMIPLENOS - VELEZ
+SOCIOS SEMIPLENOS - VELEZ SARSFIELD
 {% endblock %}
 
 
 
 
 {% block titulo_pagina %}
-<p class="text-white-50 mb-0">Empleados del Club Atletico Velez Sarsfield</p>
+<p class="text-white-50 mb-0">Administracion de socios semiplenos del Club Atletico Velez Sarsfield</p>
 {% endblock %}
 
 
 
 {% block subtitulo_uno_pagina %}
-<h2>Nuestros principales fanáticos del futbol</h2>
+<p id="titulo-semiplenos">Administrar socios semiplenos</p>
 
 {% endblock %}
 
 
 
 {% block texto_del_subtitulo_uno %}
+
+<a class="boton" href="{% url 'semiplenoform' %}">Crear nuevo socio semipleno</a>
+<a class="boton" href="{% url 'busquedasociosemipleno' %}">Buscar socio semipleno</a>
 
 
 {% endblock %}

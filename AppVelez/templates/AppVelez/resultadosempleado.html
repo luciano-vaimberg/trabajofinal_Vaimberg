@@ -1,0 +1,50 @@
+{% extends "AppVelez/padre.html" %}
+
+{% load static %}
+
+
+
+{% block titulo %} 
+RESULTADO BUSQUEDA EMPLEADO- VELEZ SARSFIELD
+{% endblock %}
+
+
+
+{% block titulo_pagina %}
+<p class="text-white-50 mb-0">Resultado busqueda de empleados en el sistema</p>
+{% endblock %}
+
+
+
+{% block subtitulo_uno_pagina %}
+
+{% if mensaje_empleado %}
+<h2>{{ mensaje_empleado }}</h2>
+{% else %}
+<h2>Resultados de la busqueda:</h2>
+
+{% for empleado in busqueda_empleados %}
+
+----------------------Empleado--------------------
+
+<h4>-Nombre: {{ empleado.nombre }}</h4>
+<h4>-Apellido: {{ empleado.apellido }}</h4>
+<h4>-Genero: {{ empleado.genero }}</h4>
+<h4>-Edad: {{ empleado.edad }}</h4>
+<h4>-Documento: {{ empleado.documento }}</h4>
+<h4>-Email: {{ empleado.email }}</h4>
+<h4>-Direccion: {{ empleado.direccion }}</h4>
+<h4>-Localidad: {{ empleado.localidad }}</h4>
+<h4>-Provincia: {{ empleado.pais }}</h4>
+<h4>-Pais: {{ empleado.pais }}</h4>
+<h4>-Cargo: {{ empleado.cargo }}</h4>
+<h4>-Sueldo: {{ empleado.sueldo }}</h4>
+<h4>-Legajo: {{ empleado.legajo }}</h4>
+
+--------------------------------------------------------<br>
+
+{% endfor %}
+{% endif %}
+{% endblock %}
+
+
