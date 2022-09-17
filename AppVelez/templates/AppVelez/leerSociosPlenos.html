@@ -28,8 +28,11 @@ Listado de socios Plenos - VELEZ SARSFIELD
 ----------------------PLENOS--------------------
 
 <h4>Nombre: {{ leerpleno.nombre }} - Apellido: {{ leerpleno.apellido }} -  Socio: {{ leerpleno.numero_socio }}</h4>
-
-
+<br>
+<button>
+    <a href="{% url 'eliminarSociosPlenos' leerpleno.id %}"> Eliminar Socio Pleno</a>
+    <a href="{% url 'editarSociosPlenos' leerpleno.id %}"> Editar Socio Pleno</a>
+</button><br>
 --------------------------------------------------------<br>
 
 {% endfor %}

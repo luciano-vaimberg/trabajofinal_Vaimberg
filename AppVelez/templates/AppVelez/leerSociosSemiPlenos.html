@@ -26,9 +26,12 @@ Listado de socios Semi Plenos - VELEZ SARSFIELD
 {% for leersemipleno in leersemiplenos %}
 
 ----------------------SEMIPLENOS--------------------
-
+<br>
 <h4>Nombre: {{ leersemipleno.nombre }} - Apellido: {{ leersemipleno.apellido }} -  Socio: {{ leersemipleno.numero_socio }}</h4>
-
+<button>
+    <a href="{% url 'eliminarSociosSemiPlenos' leersemipleno.id %}"> Eliminar Socio Semi Pleno</a>
+    <a href="{% url 'editarSociosSemiPlenos' leersemipleno.id %}"> Editar Socio Semi Pleno</a>
+</button><br>
 
 --------------------------------------------------------<br>
 

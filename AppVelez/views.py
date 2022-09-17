@@ -167,3 +167,79 @@ def leerSociosSemiPlenos(request):
 def leerEmpleados(request):
     leerempleados=Empleados.objects.all()
     return render(request, "AppVelez/leerEmpleados.html", {"leerempleados":leerempleados})
+
+
+# Eliminar socios y empleados
+
+def eliminarSociosPlenos(request, id):
+    eliminarsociopleno=SociosPlenos.objects.get(id=id)
+    eliminarsociopleno.delete()
+    leerplenos=SociosPlenos.objects.all()
+    return render(request, "AppVelez/leerSociosPlenos.html", {"leerplenos":leerplenos})
+
+def eliminarSociosSemiPlenos(request, id):
+    eliminarsociosemipleno=SociosSemiPlenos.objects.get(id=id)
+    eliminarsociosemipleno.delete()
+    leersemiplenos=SociosSemiPlenos.objects.all()
+    return render(request, "AppVelez/leerSociosSemiPlenos.html", {"leersemiplenos":leersemiplenos})
+
+
+def eliminarEmpleados(request, id):
+    eliminarempleado=Empleados.objects.get(id=id)
+    eliminarempleado.delete()
+    leerempleados=Empleados.objects.all()
+    return render(request, "AppVelez/leerEmpleados.html", {"leerempleados":leerempleados})     
+
+
+# Modificar socios y empleados
+
+def editarSociosPlenos(request, id):
+    modificarsociopleno=SociosPlenos.objects.get(id=id)
+    if request.method=="POST":
+        form=plenoForm(request.POST)
+        if form.is_valid():
+            info=form.cleaned_data
+            modificarsociopleno.nombre=info["nombre"]
+            modificarsociopleno.apellido=info["apellido"]
+            modificarsociopleno.numero_socio=info["numero_socio"]
+            modificarsociopleno.save()
+            leerplenos=SociosPlenos.objects.all()
+            return render(request, "AppVelez/leerSociosPlenos.html", {"leerplenos":leerplenos})
+    else:
+        form=plenoForm(initial={"nombre":modificarsociopleno.nombre ,"apellido":modificarsociopleno.apellido , "numero_socio": modificarsociopleno.numero_socio})
+        return render (request, "AppVelez/editarSociosPlenos.html", {"formulario_pleno":form , "id": modificarsociopleno.id })
+
+
+def editarSociosSemiPlenos(request, id):
+    modificarsociosemipleno=SociosSemiPlenos.objects.get(id=id)
+    if request.method=="POST":
+        form=semiPlenoForm(request.POST)
+        if form.is_valid():
+            info=form.cleaned_data
+            modificarsociosemipleno.nombre=info["nombre"]
+            modificarsociosemipleno.apellido=info["apellido"]
+            modificarsociosemipleno.numero_socio=info["numero_socio"]
+            modificarsociosemipleno.save()
+            leersemiplenos=SociosSemiPlenos.objects.all()
+            return render(request, "AppVelez/leerSociosSemiPlenos.html", {"leersemiplenos":leersemiplenos})
+    else:
+        form=semiPlenoForm(initial={"nombre":modificarsociosemipleno.nombre ,"apellido":modificarsociosemipleno.apellido , "numero_socio": modificarsociosemipleno.numero_socio})
+        return render (request, "AppVelez/editarSociosSemiPlenos.html", {"formulario_semipleno":form , "id": modificarsociosemipleno.id })
+
+
+def editarEmpleados(request, id):
+    modificarempleado=Empleados.objects.get(id=id)
+    if request.method=="POST":
+        form=empleadoform(request.POST)
+        if form.is_valid():
+            info=form.cleaned_data
+            modificarempleado.nombre=info["nombre"]
+            modificarempleado.apellido=info["apellido"]
+            modificarempleado.legajo=info["legajo"]
+            modificarempleado.save()
+            leerempleados=Empleados.objects.all()
+            return render(request, "AppVelez/leerEmpleados.html", {"leerempleados":leerempleados})   
+    else:
+        form=empleadoform(initial={"nombre":modificarempleado.nombre ,"apellido":modificarempleado.apellido , "legajo": modificarempleado.legajo})
+        return render (request, "AppVelez/editarEmpleados.html", {"formulario_empleado":form , "id": modificarempleado.id })
+

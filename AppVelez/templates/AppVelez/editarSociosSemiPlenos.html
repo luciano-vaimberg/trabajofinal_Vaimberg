@@ -1,0 +1,32 @@
+{% extends "AppVelez/padre.html" %}
+
+{% load static %}
+
+
+
+{% block titulo %} 
+EDITAR SOCIO SEMI PLENO - VELEZ SARSFIELD
+{% endblock %}
+
+
+
+{% block titulo_pagina %}
+<p class="text-white-50 mb-0">Edicion del socio semi pleno {{ nombre_sociopleno }}</p>
+{% endblock %}
+
+
+
+{% block subtitulo_uno_pagina %}
+<h2>Editar socio semi pleno</h2>
+
+<form action="{% url 'editarSociosSemiPlenos' id %}" method="POST">{% csrf_token %}
+    <table>
+        {{ formulario_semipleno.as_table }}
+    </table>
+
+    <input type="submit" , value="GUARDAR">
+</form>
+
+{% endblock %}
+
+

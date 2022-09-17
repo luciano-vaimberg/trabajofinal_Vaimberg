@@ -1,0 +1,32 @@
+{% extends "AppVelez/padre.html" %}
+
+{% load static %}
+
+
+
+{% block titulo %} 
+EDITAR EMPLEADOS - VELEZ SARSFIELD
+{% endblock %}
+
+
+
+{% block titulo_pagina %}
+<p class="text-white-50 mb-0">Edicion del empleado</p>
+{% endblock %}
+
+
+
+{% block subtitulo_uno_pagina %}
+<h2>Editar Empleado</h2>
+
+<form action="{% url 'editarEmpleados' id %}" method="POST">{% csrf_token %}
+    <table>
+        {{ formulario_empleado.as_table }}
+    </table>
+
+    <input type="submit" , value="GUARDAR">
+</form>
+
+{% endblock %}
+
+

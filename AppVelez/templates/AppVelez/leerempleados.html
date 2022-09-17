@@ -28,7 +28,11 @@ Listado de empleados - VELEZ SARSFIELD
 ----------------------EMPLEADOS--------------------
 
 <h4>Nombre: {{ leerempleado.nombre }} - Apellido: {{ leerempleado.apellido }} -  Legajo: {{ leerempleado.legajo }} </h4>
-
+<br>
+<button>
+    <a href="{% url 'eliminarEmpleados' leerempleado.id %}"> Eliminar Empleado</a>
+    <a href="{% url 'editarEmpleados' leerempleado.id %}"> Editar Empleado</a>
+</button><br><br>
 
 --------------------------------------------------------<br>
 

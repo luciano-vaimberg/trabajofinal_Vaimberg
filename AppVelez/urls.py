@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import leerEmpleados, leerSociosSemiPlenos, leerSociosPlenos, busquedaEmpleados, buscarEmpleados,buscarSocioSemiPleno, busquedaSocioSemiPleno ,busquedaSocioPleno, inicio, sociosemipleno, sociopleno, empleado, plenoform, semiplenoform, empleadosform, buscarSocioPleno
+from .views import editarEmpleados, editarSociosSemiPlenos, editarSociosPlenos, eliminarEmpleados, eliminarSociosSemiPlenos, eliminarSociosPlenos, leerEmpleados, leerSociosSemiPlenos, leerSociosPlenos, busquedaEmpleados, buscarEmpleados,buscarSocioSemiPleno, busquedaSocioSemiPleno ,busquedaSocioPleno, inicio, sociosemipleno, sociopleno, empleado, plenoform, semiplenoform, empleadosform, buscarSocioPleno
 
 urlpatterns = [
     path('', inicio, name="inicio"),
@@ -18,4 +18,10 @@ urlpatterns = [
     path('leerSociosPlenos/', leerSociosPlenos  ,name="leerSociosPlenos"),
     path('leerSociosSemiPlenos/', leerSociosSemiPlenos  ,name="leerSociosSemiPlenos"),
     path('leerEmpleados/', leerEmpleados  ,name="leerEmpleados"),
+    path('eliminarSociosPlenos/<id>', eliminarSociosPlenos  ,name="eliminarSociosPlenos"),
+    path('eliminarSociosSemiPlenos/<id>', eliminarSociosSemiPlenos  ,name="eliminarSociosSemiPlenos"),
+    path('eliminarEmpleados/<id>', eliminarEmpleados  ,name="eliminarEmpleados"),
+    path('editarSociosPlenos/<id>', editarSociosPlenos  ,name="editarSociosPlenos"),
+    path('editarSociosSemiPlenos/<id>', editarSociosSemiPlenos  ,name="editarSociosSemiPlenos"),
+    path('editarEmpleados/<id>', editarEmpleados  ,name="editarEmpleados"),
 ]
