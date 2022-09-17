@@ -1,0 +1,32 @@
+{% extends "AppVelez/padre.html" %}
+
+{% load static %}
+
+
+
+{% block titulo %} 
+REGISTRO DE USUARIO
+{% endblock %}
+
+
+
+{% block titulo_pagina %}
+<p class="text-white-50 mb-0">Formulario de Registro</p>
+{% endblock %}
+
+
+
+{% block subtitulo_uno_pagina %}
+ <h2>{{ mensaje_register }}</h2>
+
+<form action="{% url 'register' %}" method="POST">{% csrf_token %}
+    
+        {{ formulario_registro.as_p }}
+    <button type="submit"> REGISTRAR NUEVO USUARIO</button>
+
+    
+</form>
+
+{% endblock %}
+
+

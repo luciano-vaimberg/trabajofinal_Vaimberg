@@ -1,0 +1,34 @@
+{% extends "AppVelez/padre.html" %}
+
+{% load static %}
+
+
+
+{% block titulo %} 
+LOGIN
+{% endblock %}
+
+
+
+{% block titulo_pagina %}
+<p class="text-white-50 mb-0">Formulario de Ingreso</p>
+{% endblock %}
+
+
+
+{% block subtitulo_uno_pagina %}
+<h2>{{ mensaje_login }}</h2>
+
+
+<form action="{% url 'login' %}" method="POST">{% csrf_token %}
+    
+        {{ formulario_login.as_p }}
+   
+        <button type="submit" > INICIAR SESION</button>
+    
+
+</form>
+
+{% endblock %}
+
+
