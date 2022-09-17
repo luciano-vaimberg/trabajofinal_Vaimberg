@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import busquedaEmpleados, buscarEmpleados,buscarSocioSemiPleno, busquedaSocioSemiPleno ,busquedaSocioPleno, inicio, sociosemipleno, sociopleno, empleado, plenoform, semiplenoform, empleadosform, buscarSocioPleno
+from .views import leerEmpleados, leerSociosSemiPlenos, leerSociosPlenos, busquedaEmpleados, buscarEmpleados,buscarSocioSemiPleno, busquedaSocioSemiPleno ,busquedaSocioPleno, inicio, sociosemipleno, sociopleno, empleado, plenoform, semiplenoform, empleadosform, buscarSocioPleno
 
 urlpatterns = [
     path('', inicio, name="inicio"),
@@ -15,4 +15,7 @@ urlpatterns = [
     path('buscarsociosemipleno/', buscarSocioSemiPleno ,name="buscarsociosemipleno"),
     path('busquedaempleado/', busquedaEmpleados ,name="busquedaempleado"),
     path('buscarempleados/', buscarEmpleados  ,name="buscarempleados"),
+    path('leerSociosPlenos/', leerSociosPlenos  ,name="leerSociosPlenos"),
+    path('leerSociosSemiPlenos/', leerSociosSemiPlenos  ,name="leerSociosSemiPlenos"),
+    path('leerEmpleados/', leerEmpleados  ,name="leerEmpleados"),
 ]

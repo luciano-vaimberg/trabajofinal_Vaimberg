@@ -152,3 +152,18 @@ def buscarEmpleados(request):
             return render(request, "AppVelez/resultadosempleado.html", {"mensaje_empleado":"No existe ese legajo"})
     else:
         return render(request, "AppVelez/busquedaempleado.html", {"mensaje_empleado_":"No ingreso datos"})
+
+
+#leer socios y empleados
+
+def leerSociosPlenos(request):
+    leerplenos=SociosPlenos.objects.all()
+    return render(request, "AppVelez/leerSociosPlenos.html", {"leerplenos":leerplenos})
+
+def leerSociosSemiPlenos(request):
+    leersemiplenos=SociosSemiPlenos.objects.all()
+    return render(request, "AppVelez/leerSociosSemiPlenos.html", {"leersemiplenos":leersemiplenos})
+
+def leerEmpleados(request):
+    leerempleados=Empleados.objects.all()
+    return render(request, "AppVelez/leerEmpleados.html", {"leerempleados":leerempleados})

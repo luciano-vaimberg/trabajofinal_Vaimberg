@@ -1,0 +1,40 @@
+{% extends "AppVelez/padre.html" %}
+
+{% load static %}
+
+
+
+{% block titulo %} 
+Listado de socios Plenos - VELEZ SARSFIELD
+{% endblock %}
+
+
+
+{% block titulo_pagina %}
+<p class="text-white-50 mb-0">Listado de socios plenos</p>
+{% endblock %}
+
+
+
+{% block subtitulo_uno_pagina %}
+
+{% if leerSociosPlenos %}
+<h2>{{ leerSociosPlenos }}</h2>
+{% else %}
+<h2>Resultados de la busqueda:</h2>
+
+{% for leerpleno in leerplenos %}
+
+----------------------PLENOS--------------------
+
+<h4>Nombre: {{ leerpleno.nombre }} - Apellido: {{ leerpleno.apellido }} -  Socio: {{ leerpleno.numero_socio }}</h4>
+
+
+--------------------------------------------------------<br>
+
+{% endfor %}
+{% endif %}
+<a class="boton" href="{% url 'plenoform' %}">Agregar socio pleno</a>
+{% endblock %}
+
+
