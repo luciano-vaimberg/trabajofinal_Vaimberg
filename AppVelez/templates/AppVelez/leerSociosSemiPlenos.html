@@ -17,28 +17,32 @@ Listado de socios Semi Plenos - VELEZ SARSFIELD
 
 
 {% block subtitulo_uno_pagina %}
-
+<h2>{{ mensaje_eliminado_ssp }}</h2><br><br>
 {% if leerSociosSemiPlenos %}
 <h2>{{ leerSociosSemiPlenos }}</h2>
 {% else %}
-<h2>Resultados de la busqueda:</h2>
-
+<h2 style="text-align: center;">Listado de socios semi plenos</h2>
+---------------------------------------------------------------------------------------------------
 {% for leersemipleno in leersemiplenos %}
 
-----------------------SEMIPLENOS--------------------
+
 <br>
 <h4>Nombre: {{ leersemipleno.nombre }} - Apellido: {{ leersemipleno.apellido }} -  Socio: {{ leersemipleno.numero_socio }}</h4>
-<button>
-    <a href="{% url 'eliminarSociosSemiPlenos' leersemipleno.id %}"> Eliminar Socio Semi Pleno</a>
-    <a href="{% url 'editarSociosSemiPlenos' leersemipleno.id %}"> Editar Socio Semi Pleno</a>
-</button><br>
+<div> <!--Cambie Button debido a que recibe alguna herencia de css y tomaba estilos que no pude modificar -->
+    <br>
+    <a class="boton" href="{% url 'eliminarSociosSemiPlenos' leersemipleno.id %}"> Eliminar Socio Semi Pleno</a>
+    <a class="boton" href="{% url 'editarSociosSemiPlenos' leersemipleno.id %}" > Editar Socio Semi Pleno</a>
+</div><br>
 
---------------------------------------------------------<br>
+---------------------------------------------------------------------------------------------------<br>
 
 {% endfor %}
 {% endif %}
-
+<br>
+<h2>- - - Mas opciones - - -</h2>
+<br>
 <a class="boton" href="{% url 'semiplenoform' %}">Agregar socio semipleno</a>
+<a class="boton" href="{% url 'busquedasociosemipleno' %}">Buscar socio semipleno</a>
 {% endblock %}
 
 

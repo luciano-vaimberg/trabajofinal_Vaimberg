@@ -17,27 +17,31 @@ Listado de socios Plenos - VELEZ SARSFIELD
 
 
 {% block subtitulo_uno_pagina %}
-
+<h2>{{ mensaje_eliminado_sp }}</h2><br><br>
 {% if leerSociosPlenos %}
 <h2>{{ leerSociosPlenos }}</h2>
 {% else %}
-<h2>Resultados de la busqueda:</h2>
-
+<h2 style="text-align: center;">Listado de socios plenos</h2>
+---------------------------------------------------------------------------------------------------
 {% for leerpleno in leerplenos %}
 
-----------------------PLENOS--------------------
+
 
 <h4>Nombre: {{ leerpleno.nombre }} - Apellido: {{ leerpleno.apellido }} -  Socio: {{ leerpleno.numero_socio }}</h4>
 <br>
-<button>
-    <a href="{% url 'eliminarSociosPlenos' leerpleno.id %}"> Eliminar Socio Pleno</a>
-    <a href="{% url 'editarSociosPlenos' leerpleno.id %}"> Editar Socio Pleno</a>
-</button><br>
---------------------------------------------------------<br>
+<div> <!--Cambie Button debido a que recibe alguna herencia de css y tomaba estilos que no pude modificar -->
+    <a class="boton" href="{% url 'eliminarSociosPlenos' leerpleno.id %}"> Eliminar Socio Pleno</a>
+    <a class="boton" href="{% url 'editarSociosPlenos' leerpleno.id %}"> Editar Socio Pleno</a><br>
+</div><br>
+---------------------------------------------------------------------------------------------------<br>
 
 {% endfor %}
 {% endif %}
+<br>
+<h2>- - - Mas opciones - - -</h2>
+<br>
 <a class="boton" href="{% url 'plenoform' %}">Agregar socio pleno</a>
+<a class="boton" href="{% url 'busquedasociopleno' %}">Buscar socio pleno</a>
 {% endblock %}
 
 

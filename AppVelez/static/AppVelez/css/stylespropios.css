@@ -1,12 +1,35 @@
 
-.boton{
-  
+
+.boton-principal{
     background-color: #ffffff;
     color:#050292;
     padding:10px;
     text-decoration: none;
     font-family:sans-serif;
     box-shadow: 10px 5px 5px black; 
+    
+}
+
+.boton-secundario{
+    background-color: #ffffff;
+    color:#050292;
+    padding:10px;
+    text-decoration: none;
+    font-family:sans-serif;
+    box-shadow: 10px 5px 5px black; 
+    margin-left:10px;
+}
+
+.boton{
+    
+    background-color: #ffffff;
+    color:#050292;
+    padding:10px;
+    text-decoration: none;
+    font-family:sans-serif;
+    box-shadow: 10px 5px 5px black; 
+    margin-left:100px;
+    
    
 }
 
@@ -76,5 +99,7 @@
 
 h2, h3, h4, h5 {
     color:#ffffff;
+    text-align: center;
 }
+
 

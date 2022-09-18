@@ -168,21 +168,21 @@ def eliminarSociosPlenos(request, id ):
     eliminarsociopleno=SociosPlenos.objects.get(id=id)
     eliminarsociopleno.delete()
     leerplenos=SociosPlenos.objects.all()
-    return render(request, "AppVelez/leerSociosPlenos.html", {"leerplenos":leerplenos})
+    return render(request, "AppVelez/leerSociosPlenos.html", {"leerplenos":leerplenos , "mensaje_eliminado_sp":"< - - Socio Pleno eliminado con exito  - ->"})
 
 @login_required
 def eliminarSociosSemiPlenos(request, id):
     eliminarsociosemipleno=SociosSemiPlenos.objects.get(id=id)
     eliminarsociosemipleno.delete()
     leersemiplenos=SociosSemiPlenos.objects.all()
-    return render(request, "AppVelez/leerSociosSemiPlenos.html", {"leersemiplenos":leersemiplenos})
+    return render(request, "AppVelez/leerSociosSemiPlenos.html", {"leersemiplenos":leersemiplenos , "mensaje_eliminado_ssp":"<- -  Socio Semi Pleno eliminado con exito  - ->"})
 
 @login_required
 def eliminarEmpleados(request, id):
     eliminarempleado=Empleados.objects.get(id=id)
     eliminarempleado.delete()
     leerempleados=Empleados.objects.all()
-    return render(request, "AppVelez/leerEmpleados.html", {"leerempleados":leerempleados})     
+    return render(request, "AppVelez/leerEmpleados.html", {"leerempleados":leerempleados , "mensaje_eliminado_empleado":"<- -  Empleado eliminado con exito  - ->"})     
 
 
 # Modificar socios y empleados
