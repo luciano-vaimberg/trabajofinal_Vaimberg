@@ -1,0 +1,32 @@
+{% extends "AppVelez/padre.html" %}
+
+{% load static %}
+
+
+
+{% block titulo %} 
+EDICION DE USUARIO 
+{% endblock %}
+
+
+
+{% block titulo_pagina %}
+<p class="text-white-50 mb-0">Formulario de edicion de perfil</p>
+{% endblock %}
+
+
+
+{% block subtitulo_uno_pagina %}
+ <h2>{{ mensaje_edicion }}</h2>
+<h2> Usted esta modificando el perfil de  {{ usuario }}</h2>
+<form action="{% url 'editarPerfil' %}" method="POST">{% csrf_token %}
+    
+        {{ formulario_edicion.as_p }}
+    <button type="submit">GUARDAR CAMBIOS</button>
+
+    
+</form>
+
+{% endblock %}
+
+

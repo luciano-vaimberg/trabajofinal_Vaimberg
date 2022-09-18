@@ -2,7 +2,7 @@ from multiprocessing import AuthenticationError
 from django.shortcuts import render
 from .models import SociosPlenos, SociosSemiPlenos, Empleados
 from django.http import HttpResponse
-from AppVelez.forms import plenoForm, semiPlenoForm, empleadoform
+from AppVelez.forms import plenoForm, semiPlenoForm, empleadoform, UserEditForm
 #imports para login
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
@@ -270,3 +270,25 @@ def register(request):
     else:
         formulario_registro=UserCreationForm()
         return render (request, "AppVelez/register.html" , {"formulario_registro":formulario_registro})    
+
+
+# EDITAR PERFIL DE USUARIO
+
+@login_required
+def editarPerfil (request):
+    usuario=request.user
+    if request.method=="POST":
+        formulario_edicion= UserEditForm(request.POST, instance=usuario)
+        if formulario_edicion.is_valid():
+            info=formulario_edicion.cleaned_data
+            usuario.email=info["email"]
+            usuario.password1=info["password1"]
+            usuario.password2=info["password2"]
+            usuario.firstname=info=["first_name"]
+            usuario.lastname=info=["last_name"]
+            formulario_edicion.save()
+            return render(request, "AppVelez/inicio.html", {"mensaje_edicion":f"Perfil de {usuario} editado"})
+    else:
+        formulario_edicion=UserEditForm(instance=usuario)    
+    return render(request, "AppVelez/editarPerfil.html", {"formulario_edicion":formulario_edicion, "usuario":usuario})
+
