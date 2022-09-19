@@ -1,13 +1,13 @@
 from multiprocessing import AuthenticationError
 from django.shortcuts import render
-from .models import SociosPlenos, SociosSemiPlenos, Empleados
+from .models import Avatar, SociosPlenos, SociosSemiPlenos, Empleados, Avatar
 from django.http import HttpResponse
 from AppVelez.forms import plenoForm, semiPlenoForm, empleadoform, UserEditForm
 #imports para login
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth.decorators import login_required
-
+from django.contrib.auth.models import User
 
 
 # Create your views here.
@@ -15,19 +15,19 @@ from django.contrib.auth.decorators import login_required
    
 @login_required
 def inicio(request):
-    return render (request, "AppVelez/inicio.html")
+    return render (request, "AppVelez/inicio.html", {"imagen_avatar": obtenerAvatar(request)})
 
 @login_required
 def sociopleno(request):   
-    return render (request, "AppVelez/sociopleno.html")   
+    return render (request, "AppVelez/sociopleno.html", {"imagen_avatar": obtenerAvatar(request)})   
 
 @login_required
 def sociosemipleno(request):   
-    return render (request, "AppVelez/sociosemipleno.html")      
+    return render (request, "AppVelez/sociosemipleno.html", {"imagen_avatar": obtenerAvatar(request)})      
 
 @login_required
 def empleado(request):   
-    return render (request, "AppVelez/empleados.html")     
+    return render (request, "AppVelez/empleados.html", {"imagen_avatar": obtenerAvatar(request)})     
 
 @login_required
 def semiplenoform(request):
@@ -46,7 +46,7 @@ def semiplenoform(request):
             return render(request, "AppVelez/inicio.html", {"mensaje_sociosemipleno":"error"}) 
     else:
         formulariosemipleno=semiPlenoForm()
-        return render(request, "AppVelez/semiform.html", {"formulariosemipleno":formulariosemipleno})
+        return render(request, "AppVelez/semiform.html", {"formulariosemipleno":formulariosemipleno , "imagen_avatar": obtenerAvatar(request)})
    
 @login_required
 def plenoform(request):
@@ -65,7 +65,7 @@ def plenoform(request):
             return render(request, "AppVelez/inicio.html", {"mensaje_sociopleno":"error"}) 
     else:
         formulariopleno=plenoForm()
-        return render(request, "AppVelez/plenoform.html", {"formulariopleno":formulariopleno})
+        return render(request, "AppVelez/plenoform.html", {"formulariopleno":formulariopleno , "imagen_avatar": obtenerAvatar(request)})
 
 @login_required
 def empleadosform(request):
@@ -83,12 +83,13 @@ def empleadosform(request):
             return render(request, "AppVelez/inicio.html", {"mensaje_empleado":"error"}) 
     else:
         formulario_empleado=empleadoform()
-        return render(request, "AppVelez/empleadoform.html", {"formularioemp":formulario_empleado})
+        
+        return render(request, "AppVelez/empleadoform.html", {"formularioemp":formulario_empleado, "imagen_avatar": obtenerAvatar(request)})
 
 #Busqueda por form socio pleno 
 @login_required
 def busquedaSocioPleno(request):
-    return render (request, "AppVelez/busquedasociopleno.html")
+    return render (request, "AppVelez/busquedasociopleno.html",{"imagen_avatar": obtenerAvatar(request)})
 @login_required
 def buscarSocioPleno(request):
     if request.GET["numero_socio"]:
@@ -100,14 +101,14 @@ def buscarSocioPleno(request):
         else:  
             return render(request, "AppVelez/resultadospleno.html", {"mensaje_pleno_":"No existe ese socio"})   
     else:   
-        return render(request, "AppVelez/busquedasociopleno.html", {"mensaje_pleno_":"No ingreso datos"})         
+        return render(request, "AppVelez/busquedasociopleno.html", {"mensaje_pleno_":"No ingreso datos" , "imagen_avatar": obtenerAvatar(request)})         
          
 
-
 #Busqueda por form socio semipleno 
+
 @login_required
 def busquedaSocioSemiPleno(request):
-    return render (request, "AppVelez/busquedasociosemipleno.html")
+    return render (request, "AppVelez/busquedasociosemipleno.html" ,{"imagen_avatar": obtenerAvatar(request)})
 
 @login_required
 def buscarSocioSemiPleno(request):
@@ -120,13 +121,13 @@ def buscarSocioSemiPleno(request):
         else:
             return render(request, "AppVelez/resultadossemipleno.html", {"mensaje_semipleno_":"No existe ese socio"})  
     else:
-         return render(request, "AppVelez/busquedasociosemipleno.html", {"mensaje_semipleno_":"No ingreso datos"})   
+         return render(request, "AppVelez/busquedasociosemipleno.html", {"mensaje_semipleno_":"No ingreso datos" , "imagen_avatar": obtenerAvatar(request)})   
 
 #Busqueda por form empleados
 
 @login_required
 def busquedaEmpleados(request):
-    return render (request, "AppVelez/busquedaempleado.html")
+    return render (request, "AppVelez/busquedaempleado.html",{"imagen_avatar": obtenerAvatar(request)})
 
 @login_required
 def buscarEmpleados(request):
@@ -140,7 +141,7 @@ def buscarEmpleados(request):
         else:
             return render(request, "AppVelez/resultadosempleado.html", {"mensaje_empleado":"No existe ese legajo"})
     else:
-        return render(request, "AppVelez/busquedaempleado.html", {"mensaje_empleado_":"No ingreso datos"})
+        return render(request, "AppVelez/busquedaempleado.html", {"mensaje_empleado_":"No ingreso datos","imagen_avatar": obtenerAvatar(request)})
 
 
 #leer socios y empleados
@@ -148,17 +149,17 @@ def buscarEmpleados(request):
 @login_required
 def leerSociosPlenos(request):
     leerplenos=SociosPlenos.objects.all()
-    return render(request, "AppVelez/leerSociosPlenos.html", {"leerplenos":leerplenos})
+    return render(request, "AppVelez/leerSociosPlenos.html", {"leerplenos":leerplenos,"imagen_avatar": obtenerAvatar(request)})
 
 @login_required
 def leerSociosSemiPlenos(request):
     leersemiplenos=SociosSemiPlenos.objects.all()
-    return render(request, "AppVelez/leerSociosSemiPlenos.html", {"leersemiplenos":leersemiplenos})
+    return render(request, "AppVelez/leerSociosSemiPlenos.html", {"leersemiplenos":leersemiplenos,"imagen_avatar": obtenerAvatar(request)})
 
 @login_required
 def leerEmpleados(request):
     leerempleados=Empleados.objects.all()
-    return render(request, "AppVelez/leerEmpleados.html", {"leerempleados":leerempleados})
+    return render(request, "AppVelez/leerEmpleados.html", {"leerempleados":leerempleados,"imagen_avatar": obtenerAvatar(request)})
 
 
 # Eliminar socios y empleados
@@ -168,21 +169,21 @@ def eliminarSociosPlenos(request, id ):
     eliminarsociopleno=SociosPlenos.objects.get(id=id)
     eliminarsociopleno.delete()
     leerplenos=SociosPlenos.objects.all()
-    return render(request, "AppVelez/leerSociosPlenos.html", {"leerplenos":leerplenos , "mensaje_eliminado_sp":"< - - Socio Pleno eliminado con exito  - ->"})
+    return render(request, "AppVelez/leerSociosPlenos.html", {"leerplenos":leerplenos , "mensaje_eliminado_sp":"< - - Socio Pleno eliminado con exito  - ->","imagen_avatar": obtenerAvatar(request)})
 
 @login_required
 def eliminarSociosSemiPlenos(request, id):
     eliminarsociosemipleno=SociosSemiPlenos.objects.get(id=id)
     eliminarsociosemipleno.delete()
     leersemiplenos=SociosSemiPlenos.objects.all()
-    return render(request, "AppVelez/leerSociosSemiPlenos.html", {"leersemiplenos":leersemiplenos , "mensaje_eliminado_ssp":"<- -  Socio Semi Pleno eliminado con exito  - ->"})
+    return render(request, "AppVelez/leerSociosSemiPlenos.html", {"leersemiplenos":leersemiplenos , "mensaje_eliminado_ssp":"<- -  Socio Semi Pleno eliminado con exito  - ->","imagen_avatar": obtenerAvatar(request)})
 
 @login_required
 def eliminarEmpleados(request, id):
     eliminarempleado=Empleados.objects.get(id=id)
     eliminarempleado.delete()
     leerempleados=Empleados.objects.all()
-    return render(request, "AppVelez/leerEmpleados.html", {"leerempleados":leerempleados , "mensaje_eliminado_empleado":"<- -  Empleado eliminado con exito  - ->"})     
+    return render(request, "AppVelez/leerEmpleados.html", {"leerempleados":leerempleados , "mensaje_eliminado_empleado":"<- -  Empleado eliminado con exito  - ->","imagen_avatar": obtenerAvatar(request)})     
 
 
 # Modificar socios y empleados
@@ -202,7 +203,7 @@ def editarSociosPlenos(request, id):
             return render(request, "AppVelez/leerSociosPlenos.html", {"leerplenos":leerplenos})
     else:
         form=plenoForm(initial={"nombre":modificarsociopleno.nombre ,"apellido":modificarsociopleno.apellido , "numero_socio": modificarsociopleno.numero_socio})
-        return render (request, "AppVelez/editarSociosPlenos.html", {"formulario_pleno":form , "id": modificarsociopleno.id })
+        return render (request, "AppVelez/editarSociosPlenos.html", {"formulario_pleno":form , "id": modificarsociopleno.id,"imagen_avatar": obtenerAvatar(request) })
 
 @login_required
 def editarSociosSemiPlenos(request, id):
@@ -219,7 +220,7 @@ def editarSociosSemiPlenos(request, id):
             return render(request, "AppVelez/leerSociosSemiPlenos.html", {"leersemiplenos":leersemiplenos})
     else:
         form=semiPlenoForm(initial={"nombre":modificarsociosemipleno.nombre ,"apellido":modificarsociosemipleno.apellido , "numero_socio": modificarsociosemipleno.numero_socio})
-        return render (request, "AppVelez/editarSociosSemiPlenos.html", {"formulario_semipleno":form , "id": modificarsociosemipleno.id })
+        return render (request, "AppVelez/editarSociosSemiPlenos.html", {"formulario_semipleno":form , "id": modificarsociosemipleno.id,"imagen_avatar": obtenerAvatar(request) })
 
 @login_required
 def editarEmpleados(request, id):
@@ -236,7 +237,7 @@ def editarEmpleados(request, id):
             return render(request, "AppVelez/leerEmpleados.html", {"leerempleados":leerempleados})   
     else:
         form=empleadoform(initial={"nombre":modificarempleado.nombre ,"apellido":modificarempleado.apellido , "legajo": modificarempleado.legajo})
-        return render (request, "AppVelez/editarEmpleados.html", {"formulario_empleado":form , "id": modificarempleado.id })
+        return render (request, "AppVelez/editarEmpleados.html", {"formulario_empleado":form , "id": modificarempleado.id,"imagen_avatar": obtenerAvatar(request) })
 
 # LOGIN - LOGOUT Y REGISTRO DE USUARIOS
 
@@ -290,5 +291,14 @@ def editarPerfil (request):
             return render(request, "AppVelez/inicio.html", {"mensaje_edicion":f"Perfil de {usuario} editado"})
     else:
         formulario_edicion=UserEditForm(instance=usuario)    
-    return render(request, "AppVelez/editarPerfil.html", {"formulario_edicion":formulario_edicion, "usuario":usuario})
+    return render(request, "AppVelez/editarPerfil.html", {"formulario_edicion":formulario_edicion, "usuario":usuario ,"imagen_avatar": obtenerAvatar(request)})
 
+# AVATAR
+
+def obtenerAvatar(request):   
+    lista_avatar= Avatar.objects.filter(user=request.user)
+    if len(lista_avatar)!=0:
+        imagen_avatar=lista_avatar[0].imagen.url
+    else:
+        imagen_avatar=""   
+    return imagen_avatar

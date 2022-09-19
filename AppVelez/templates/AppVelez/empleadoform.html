@@ -17,6 +17,9 @@ EMPLEADOS - VELEZ SARSFIELD
 
 
 {% block subtitulo_uno_pagina %}
+<img src="{{ imagen }}" alt="">
+
+
 <h2>Crea un nuevo empleado</h2>
 
 <form action="{% url 'empleadoform' %}" method="POST">{% csrf_token %}
