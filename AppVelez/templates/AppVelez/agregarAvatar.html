@@ -1,0 +1,32 @@
+{% extends "AppVelez/padre.html" %}
+
+{% load static %}
+
+
+
+{% block titulo %} 
+AGREGAR AVATAR
+{% endblock %}
+
+
+
+{% block titulo_pagina %}
+<p class="text-white-50 mb-0">Agregando avatar de {{ usuario }}</p>
+{% endblock %}
+
+
+
+{% block subtitulo_uno_pagina %}
+ <h2>{{ mensaje_avatar }}</h2>
+
+<form action="{% url 'agregarAvatar' %}" method="POST" enctype="multipart/form-data">{% csrf_token %}
+    
+        {{ formulario_avatar.as_p }}
+    <button id="boton-avatar"type="submit">AGREGAR AVATAR</button>
+
+    
+</form>
+
+{% endblock %}
+
+

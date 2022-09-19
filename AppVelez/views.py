@@ -2,7 +2,7 @@ from multiprocessing import AuthenticationError
 from django.shortcuts import render
 from .models import Avatar, SociosPlenos, SociosSemiPlenos, Empleados, Avatar
 from django.http import HttpResponse
-from AppVelez.forms import plenoForm, semiPlenoForm, empleadoform, UserEditForm
+from AppVelez.forms import plenoForm, semiPlenoForm, empleadoform, UserEditForm, AvatarForm
 #imports para login
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
@@ -302,3 +302,21 @@ def obtenerAvatar(request):
     else:
         imagen_avatar=""   
     return imagen_avatar
+
+
+
+# AGREGAR AVATAR POR FORMULARIO
+
+def agregarAvatar(request):
+    if request.method=="POST":
+        formulario_avatar=AvatarForm(request.POST, request.FILES)
+        if formulario_avatar.is_valid():
+            avatarViejo=Avatar.objects.get(user=request.user)
+            if(avatarViejo.imagen):
+                avatarViejo.delete()
+            avatar=Avatar(user=request.user, imagen=formulario_avatar.cleaned_data["imagen"])
+            avatar.save()
+            return render(request, "AppVelez/inicio.html", {"usuario":request.user,"mensaje_avatar":"Avatar cambiando exitosamente"})
+    else:
+        formulario_avatar   =AvatarForm()
+    return render(request, "AppVelez/agregarAvatar.html", {"formulario_avatar":formulario_avatar, "usuario":request.user, "imagen_avatar": obtenerAvatar(request)})            

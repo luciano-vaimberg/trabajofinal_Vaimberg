@@ -18,15 +18,18 @@ EDICION DE USUARIO
 
 {% block subtitulo_uno_pagina %}
  <h2>{{ mensaje_edicion }}</h2>
-<h2> Usted esta modificando el perfil de  {{ usuario }}</h2>
+<h2> Usted esta modificando el perfil de <strong><u><i>{{ usuario }}</strong></u></i></h2><br>
 <form action="{% url 'editarPerfil' %}" method="POST">{% csrf_token %}
     
         {{ formulario_edicion.as_p }}
-    <button type="submit">GUARDAR CAMBIOS</button>
+    <button id="boton-guardar-cambios" type="submit">GUARDAR CAMBIOS</button>
 
     
 </form>
-
+<br><br>
+<p id="guardar-cambios">----------------------GUARDAR CAMBIOS ANTES DE AVANZAR----------------------------</p><br>
+<br><br>
+<a class="boton-agregar-avatar" href="{% url 'agregarAvatar' %}">Cambiar Avatar</a>
 {% endblock %}
 
 

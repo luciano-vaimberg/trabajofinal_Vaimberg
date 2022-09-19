@@ -119,3 +119,40 @@ h2, h3, h4, h5 {
 #avatar-img{
     margin-left:25px;
 }
+
+#guardar-cambios{
+    color:#ffffff;
+}
+
+
+.boton-agregar-avatar{
+    background-color: #ffffff;
+    color:#050292;
+    padding:10px;
+    text-decoration: none;
+    font-family:sans-serif;
+    box-shadow: 10px 5px 5px black; 
+    margin-left: 35%;
+}
+
+#boton-guardar-cambios{
+    background-color: #0804b9;
+    color:#ffffff;
+    margin-left: 33%;
+}
+
+#boton-guardar-cambios:hover{
+    background-color: #040178;
+    color:#d2d2d2;
+}
+
+#boton-avatar{
+    background-color: #0804b9;
+    color:#ffffff;
+    padding:10px;
+    text-decoration: none;
+    font-family:sans-serif;
+    box-shadow: 10px 5px 5px black; 
+    margin-left:230px;
+    
+}
